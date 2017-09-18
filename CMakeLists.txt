@@ -1,11 +1,11 @@
 #files
 
 file(GLOB EssexEngineInputDaemon_HEADERS
-    "src/Daemons/Input/*.h"
+    "src/Daemons/InputDaemon/*.h"
 )
 file(GLOB EssexEngineInputDaemon_SRC
     ${EssexEngineInputDaemon_HEADERS}
-    "src/Daemons/Input/*.cpp"
+    "src/Daemons/InputDaemon/*.cpp"
 )
 
 #setup headers
