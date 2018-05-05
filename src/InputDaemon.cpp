@@ -15,14 +15,6 @@ EssexEngine::Daemons::Input::InputDaemon::InputDaemon(WeakPointer<Context> _cont
 
 EssexEngine::Daemons::Input::InputDaemon::~InputDaemon() {}
 
-extern "C" {
-    void daemon_init(EssexEngine::Context* context) {
-        context->RegisterDaemon<EssexEngine::Daemons::Input::InputDaemon>(
-            new EssexEngine::Daemons::Input::InputDaemon(context)
-        );
-    }
-}
-
 bool EssexEngine::Daemons::Input::InputDaemon::IsKeyPressed(KeyboardButton::InputKeys key) {
     return GetDriver()->IsKeyPressed(key);
 }
