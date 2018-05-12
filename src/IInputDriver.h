@@ -1,7 +1,7 @@
 /* 
  * Essex Engine
  * 
- * Copyright (C) 2017 Nathan Mentley - All Rights Reserved
+ * Copyright (C) 2018 Nathan Mentley - All Rights Reserved
  * You may use, distribute and modify this code under the
  * terms of the BSD license.
  *
@@ -11,6 +11,9 @@
 #pragma once
 
 #include <EssexEngineCore/IDriver.h>
+#include <EssexEngineCore/WeakPointer.h>
+
+#include <EssexEngineWindowDaemon/IRenderContext.h>
 
 namespace EssexEngine{
 namespace Daemons{
@@ -45,8 +48,8 @@ namespace Input{
     class IInputDriver: public Core::IDriver
     {
     public:
-        virtual bool IsKeyPressed(KeyboardButton::InputKeys key) = 0;
-        virtual bool IsMousePressed(MouseButton::MouseButtons key, MouseEventLocation &data) = 0;
+        virtual bool IsKeyPressed(WeakPointer<Window::IRenderContext> context, KeyboardButton::InputKeys key) = 0;
+        virtual bool IsMousePressed(WeakPointer<Window::IRenderContext> context, MouseButton::MouseButtons key, MouseEventLocation &data) = 0;
     private:
     };
 }}};

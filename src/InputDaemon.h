@@ -1,7 +1,7 @@
 /* 
  * Essex Engine
  * 
- * Copyright (C) 2017 Nathan Mentley - All Rights Reserved
+ * Copyright (C) 2018 Nathan Mentley - All Rights Reserved
  * You may use, distribute and modify this code under the
  * terms of the BSD license.
  *
@@ -10,9 +10,12 @@
  */
 #pragma once
 
-#include <EssexEngineInputDaemon/IInputDriver.h>
 #include <EssexEngineCore/BaseDaemon.h>
 #include <EssexEngineCore/LogDaemon.h>
+
+#include <EssexEngineWindowDaemon/IRenderContext.h>
+
+#include <EssexEngineInputDaemon/IInputDriver.h>
 
 namespace EssexEngine{
 namespace Daemons{
@@ -35,8 +38,8 @@ namespace Input{
         std::string GetDaemonName() { return "Input"; }
         std::string GetDaemonVersion() { return ESSEX_ENGINE_VERSION; }
         
-        bool IsKeyPressed(KeyboardButton::InputKeys key);
-        bool IsMousePressed(MouseButton::MouseButtons key, MouseEventLocation &data);
+        bool IsKeyPressed(WeakPointer<Window::IRenderContext> context, KeyboardButton::InputKeys key);
+        bool IsMousePressed(WeakPointer<Window::IRenderContext> context, MouseButton::MouseButtons key, MouseEventLocation &data);
     private:
     };
 }}};

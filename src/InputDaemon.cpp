@@ -1,7 +1,7 @@
 /* 
  * Essex Engine
  * 
- * Copyright (C) 2017 Nathan Mentley - All Rights Reserved
+ * Copyright (C) 2018 Nathan Mentley - All Rights Reserved
  * You may use, distribute and modify this code under the
  * terms of the BSD license.
  *
@@ -11,14 +11,20 @@
 
 #include <EssexEngineInputDaemon/InputDaemon.h>
 
-EssexEngine::Daemons::Input::InputDaemon::InputDaemon(WeakPointer<Context> _context):BaseDaemon(_context) {}
+using EssexEngine::WeakPointer;
 
-EssexEngine::Daemons::Input::InputDaemon::~InputDaemon() {}
+using EssexEngine::Daemons::Window::IRenderContext;
 
-bool EssexEngine::Daemons::Input::InputDaemon::IsKeyPressed(KeyboardButton::InputKeys key) {
-    return GetDriver()->IsKeyPressed(key);
+using EssexEngine::Daemons::Input::InputDaemon;
+
+InputDaemon::InputDaemon(WeakPointer<Context> _context):BaseDaemon(_context) {}
+
+InputDaemon::~InputDaemon() {}
+
+bool InputDaemon::IsKeyPressed(WeakPointer<IRenderContext> context, KeyboardButton::InputKeys key) {
+    return GetDriver()->IsKeyPressed(context, key);
 }
 
-bool EssexEngine::Daemons::Input::InputDaemon::IsMousePressed(MouseButton::MouseButtons key, MouseEventLocation &data) {
-    return GetDriver()->IsMousePressed(key, data);
+bool InputDaemon::IsMousePressed(WeakPointer<IRenderContext> context, MouseButton::MouseButtons key, MouseEventLocation &data) {
+    return GetDriver()->IsMousePressed(context, key, data);
 }
